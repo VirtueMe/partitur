@@ -20,7 +20,7 @@ The architect plans from what already exists, not from scratch.
 - **Repertoire is established.** VirtueMe/repertoire is public under MIT and released as v0.1.0, seeded by the human. It holds the role schema, the six starting roles (architect, coder, tester, reviewer, merger, writer), the starting skills (worktree, commit, review) and a `bb check` that runs in CI. Release Please is configured as a single package. Seeding is done and is not part of the build.
 - **Repertoire's roles are already versioned by folder.** Each role has a `1.0.0/` folder with `role.edn` and `instructions.md`, and the role root holds the latest version for compatibility. The architect checks the repository for what remains of this brief's catalogue model, such as versioned skills, team presets, the immutability check and certification, and plans the rest as pull requests to Repertoire that only the human merges.
 - **Partitur** is the new repository for the build, VirtueMe/partitur.
-- **The current swarm** runs on GitHub issues and its existing skills, as described in Part B.
+- **The current swarm** works locally with file-based issues and logging, and has no access to GitHub, as described in Part B.
 
 The architect's first deliverable is a plan: the first ADR, the issue tree for phase 1, and where the Repertoire migration fits. It is presented at the first gate before any code is written.
 
@@ -307,15 +307,15 @@ Both repositories are public from the start, under the MIT licence. The build is
 
 What the builder may touch:
 
-- **The new monorepo:** its code, issues, ADRs and branches.
-- **The catalogue repository:** opening pull requests for proposed role templates and skills, never merging them.
+- **The new monorepo:** its code, ADRs and local branches. The swarm has no GitHub access; the human pushes, opens pull requests and publishes.
+- **The catalogue repository:** read-only. A proposed role template or skill is written as a proposal in the swarm's own files and escalated; the human turns it into a pull request and decides whether to merge it.
 - **Nothing in the current swarm's repository, skills or configuration.** Anything it finds missing there becomes a proposal for the human, not a change.
 
 The builder stops and asks the human at these gates:
 
 - Before writing the first ADR (inheritance and repository decision)
 - Before locking the package interfaces between the build's phases
-- Before opening a catalogue PR for a role template or skill, and before using a skill the current swarm does not already have
+- Before proposing a role template or skill for the catalogue, and before using a skill the current swarm does not already have
 - At each phase's review, before its work merges to main
 - When a phase hits the timebox below
 
@@ -503,7 +503,7 @@ Budget for this build:
 
 Decision log, a deliverable in its own right: every human intervention is recorded with the date, the question, who raised it, the answer and the reasoning. The log answers which steps ran on their own, which needed the human, and what kinds of decisions kept coming back.
 
-The builder's own log: the current swarm runs on GitHub issues, not the event log it is building. Until phase 1 is done, it records the build as GitHub issues in the new repository, following the same issue tree. Once `core` can ingest events, those issues are imported, so the build's own history becomes the new swarm's first log, and from then on the build records its events there.
+The builder's own log: the current swarm works with its own file-based issues and events and never touches GitHub. That history belongs to the forge and is handled with the forge's own tools, as for any project the forge builds. Partitur is ignorant of what built it: it never reads or imports the forge's files, and its event log starts fresh with its own first events.
 
 ## Acceptance and open questions
 
