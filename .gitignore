@@ -1,0 +1,22 @@
+# conductor-swarm-forge runtime state and per-agent briefings
+.conductor/
+.worktrees/
+CLAUDE.md
+AGENTS.md
+.claude/
+.agents/
+*.pid
+*.log
+
+# Clojure / babashka tooling
+.cpcache/
+.nrepl-port
+.lsp/
+.clj-kondo/.cache/
+.portal/
+
+# editors and OS
+.idea/
+.vscode/
+*.swp
+.DS_Store

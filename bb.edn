@@ -1,0 +1,4 @@
+{:paths ["scripts" "test"]
+ :deps  {metosin/malli {:mvn/version "0.16.4"}}
+ :tasks {test {:doc "Run all tests under test/"
+               :task (load-file "scripts/test.clj")}}}
